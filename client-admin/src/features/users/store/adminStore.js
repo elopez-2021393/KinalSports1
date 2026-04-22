@@ -7,7 +7,7 @@ import {
     deleteField as deleteFieldRequest
 } from "../../../shared/apis";
 
-export const useFieldsStore = create((set) => ({
+export const useFieldsStore = create((set, get) => ({
     fields: [],
     loading: false,
     error: null,

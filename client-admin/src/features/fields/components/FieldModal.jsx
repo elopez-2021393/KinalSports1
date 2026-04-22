@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useFieldsStore } from "../../users/store/adminStore";
-import { Spinner } from "../../auth/components/Spinner.jsx";
 import { useSaveField } from "../../fields/hooks/useSaveField";
 import { showSuccess, showError } from "../../../shared/utils/toast.js";
 
@@ -266,7 +265,7 @@ export const FieldModal = ({ isOpen, onClose, field }) => {
               }}
             >
               {loading ? (
-                <Spinner small />
+                <span className="inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
               ) : field ? (
                 "Guardar cambios"
               ) : (

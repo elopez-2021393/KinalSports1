@@ -1,13 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useFieldsStore } from "../../users/store/adminStore";
 import { Spinner } from "../../auth/components/Spinner.jsx";
 import { FieldModal } from "./FieldModal.jsx";
 import { useUIStore } from "../../auth/store/uiStore.js";
-import { useEffect as useToastEffect } from "react";
 import { showError } from "../../../shared/utils/toast.js";
 
 export const Fields = () => {
-  const { fields, loading, error, getFields } = useFieldsStore();
+  const { fields, loading, error, getFields, deleteField } = useFieldsStore();
   const [openModal, setOpenModal] = useState(false);
   const [selectedField, setSelectedField] = useState(null);
   const { openConfirm } = useUIStore();
@@ -16,8 +15,7 @@ export const Fields = () => {
     getFields();
   }, [getFields]);
 
-  // Mostrar toast de error si existe
-  useToastEffect(() => {
+  useEffect(() => {
     if (error) showError(error);
   }, [error]);
 
