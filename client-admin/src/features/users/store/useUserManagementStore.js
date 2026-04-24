@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { getAllUsers as getAllUsersRequest } from "../../../shared/apis";
 
-export const useUserManagementStore = create((set) => ({
+export const useUserManagementStore = create((set, get) => ({
     users: [],
     loading: false,
     error: null,
@@ -9,7 +9,7 @@ export const useUserManagementStore = create((set) => ({
 
     setFilters: (filters) => set({ filters }),
 
-    setUser: (users) => set({ users }), //Sirve para setear el estado de estos atributos
+    setUser: (users) => set({ users }),
 
     getAllUsers: async (apiFn = getAllUsersRequest, options = {}) => {
         try {
@@ -28,10 +28,9 @@ export const useUserManagementStore = create((set) => ({
                 users: response.users || response,
                 loading: false,
             })
-
-        } catch (error) {
+        } catch (err) {
             set({
-                error: error.response?.data?.message || "Error al listar usuarios",
+                error: err.response?.data?.message || "Error al listar usuarios",
                 loading: false,
             })
         }
