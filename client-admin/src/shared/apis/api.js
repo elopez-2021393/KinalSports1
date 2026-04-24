@@ -18,14 +18,24 @@ const axiosAdmin = axios.create({
     }
 });
 
-axiosAdmin.interceptors.request.use((config) => {
-    config._axiosClient = 'admin';//Agregar identidad a este incercepto para saber a que servicios se le esta haciendo la peticion
+//INTERCEPTORES DE TOKENs
+axiosAuth.interceptors.request.use((config) => {
+    config._axiosClient = "auth";
     const token = useAuthStore.getState().token;
     if (token) {
         config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
-})
+});
+
+axiosAdmin.interceptors.request.use((config) => {
+    config._axiosClient = 'admin';
+    const token = useAuthStore.getState().token;
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }//Extraer el token si no es undefined
+    return config;
+})//Crear la llave el autorization
 
 let _isRefreshing = false;
 let failedQueue = [];
@@ -109,6 +119,7 @@ const handleRefreshToken = async function (_error) {
 };
 
 axiosAuth.interceptors.response.use((res) => res, handleRefreshToken);
+
 axiosAdmin.interceptors.response.use((res) => res, handleRefreshToken);
 
 export { axiosAuth, axiosAdmin };
