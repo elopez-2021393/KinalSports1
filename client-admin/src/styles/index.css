@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 /* Solamente estilos globales*/
 @theme {
@@ -39,17 +39,19 @@
 }
 
 .sidebar-underline.active::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 16px;
   right: 16px;
   bottom: 6px;
   height: 5px;
   border-radius: 6px;
-  background: linear-gradient(90deg,
-      rgba(8, 49, 109, 0.18) 0%,
-      #08316d 50%,
-      rgba(8, 49, 109, 0.18) 100%);
+  background: linear-gradient(
+    90deg,
+    rgba(8, 49, 109, 0.18) 0%,
+    #08316d 50%,
+    rgba(8, 49, 109, 0.18) 100%
+  );
   filter: blur(1.5px);
   z-index: 1;
 }
