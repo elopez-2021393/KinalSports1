@@ -18,7 +18,7 @@ export const LoginForm = ({ onForgot }) => {
     const res = await login(data);
     if (res.success) {
       navigate('/dashboard');
-      toast.success('¡Bienvenido a Sexto!', { duration: 3000 });
+      toast.success('¡Bienvenido a KinalSports!', { duration: 3000 });
     }
   };
 

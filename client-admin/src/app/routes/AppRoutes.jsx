@@ -9,12 +9,15 @@ import { Teams } from '../../features/teams/components/Teams.jsx';
 import { Users } from '../../features/users/components/Users.jsx';
 import { Reservations } from '../../features/reservations/components/Reservations.jsx';
 import { RoleGuard } from './RoleGuard.jsx';
+import { VerifyEmailPage } from '../../features/auth/pages/VerifyEmailPage.jsx'
 
 export const AppRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={<AuthPage />} />
       <Route path='/unauthorized' element={<UnauthorizedPage />} />
+      <Route path='/verify-email' element={<VerifyEmailPage />} />
+
       <Route
         path='/dashboard/*'
         element={
